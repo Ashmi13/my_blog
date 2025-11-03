@@ -64,7 +64,8 @@ try {
             
             $response['success'] = true;
             $response['message'] = 'Login successful!';
-            $response['redirect'] = 'dashboard.html';
+            // Redirect relative to root
+            $response['redirect'] = '../frontend/dashboard.html';
             
         } else {
             // Password incorrect

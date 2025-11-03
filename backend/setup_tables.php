@@ -1,5 +1,5 @@
 <?php
-require 'backend/db_connect.php';
+require 'db_connect.php'; 
 
 try {
     // Create users table

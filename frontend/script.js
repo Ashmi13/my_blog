@@ -205,7 +205,7 @@ async function handleRegistration(event) {
     }
     
     try {
-        const response = await fetch('backend/register.php', {
+        const response = await fetch('../backend/register.php', {
             method: 'POST',
             body: formData
         });
@@ -238,7 +238,7 @@ async function handleLogin(event) {
     const formData = new FormData(form);
 
     try {
-        const response = await fetch('backend/login.php', {
+        const response = await fetch('../backend/login.php', {
             method: 'POST',
             body: formData
         });
@@ -280,7 +280,7 @@ async function showSinglePost(postId) {
     detailView.innerHTML = '<h2>Loading Article...</h2><p style="text-align:center;">Please wait.</p>';
 
     try {
-        const response = await fetch(`backend/api/get_single_blog.php?id=${postId}`);
+        const response = await fetch(`../backend/api/get_single_blog.php?id=${postId}`);
         const result = await response.json();
 
         if (result.success) {
@@ -351,7 +351,7 @@ async function loadHomeBlogs() {
     blogGrid.innerHTML = '<p style="text-align: center; color: #7f8c8d; padding: 40px;">Loading latest posts...</p>';
 
     try {
-        const response = await fetch('backend/api/get_blogs.php');
+        const response = await fetch('../backend/api/get_blogs.php');
         
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
@@ -407,7 +407,7 @@ async function handleCreatePost(event) {
     const isUpdate = !!postId;
 
     // Determine API endpoint and success message based on operation
-    const apiEndpoint = isUpdate ? 'backend/api/update_blog.php' : 'backend/api/create_blog.php';
+        const apiEndpoint = isUpdate ? '../backend/api/update_blog.php' : '../backend/api/create_blog.php';
     const successMsg = isUpdate ? 'Blog post updated successfully!' : 'Blog post published successfully!';
     const failureMsg = isUpdate ? 'Update Failed: ' : 'Publishing Failed: ';
 
@@ -511,7 +511,7 @@ async function handleDeletePost(blogId) {
         const deleteData = { id: blogId };
 
         try {
-            const response = await fetch('backend/api/delete_blog.php', {
+            const response = await fetch('../backend/api/delete_blog.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -554,7 +554,7 @@ async function loadPostForEdit(blogId) {
     const formTitle = document.getElementById('post-form-title');
 
     try {
-        const response = await fetch(`backend/api/get_single_blog.php?id=${blogId}`);
+        const response = await fetch(`../backend/api/get_single_blog.php?id=${blogId}`);
         
         // CRITICAL: Check response status for fetching single post
         if (!response.ok) {
@@ -647,7 +647,7 @@ async function loadUserPosts() {
     newPostList.innerHTML = '<li>Loading your posts...</li>';
 
     try {
-        const response = await fetch('backend/api/get_user_blogs.php', { credentials: 'same-origin' });
+        const response = await fetch('../backend/api/get_user_blogs.php', { credentials: 'same-origin' });
 
         if (!response.ok) {
             if (response.status === 403) {
