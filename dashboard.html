@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Blog Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div class="container nav-bar">
+            <a href="index.html" class="logo">MyBlogSphere</a>
+            <div class="nav-links">
+                <a href="index.html" class="btn secondary">Back to Home</a>
+                <a href="backend/logout.php" class="btn">Logout</a> 
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="dashboard">
+            <div class="dashboard-header">
+                <h2 id="author-welcome">Welcome back, **Author**!</h2> 
+                <button class="btn" id="create-btn" onclick="toggleForm('create-form')">
+                    ✨ Create New Post
+                </button>
+            </div>
+
+            <hr/>
+
+            <div id="create-form" class="auth-form" style="display: none; margin-bottom: 40px; max-width: 800px; padding: 30px;">
+                <h3 id="post-form-title">Write Your Masterpiece</h3>
+                <form id="create-post-form"> 
+                    
+                    <input type="hidden" id="post-id-hidden" name="id">
+                    
+                    <div class="form-group">
+                        <label for="post-title">Blog Title</label>
+                        <input type="text" id="post-title" name="title" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="post-content">Blog Content (Full Article)</label>
+                        <textarea id="post-content" name="content" rows="10" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="post-tags">Tags (e.g., tech, coding, design)</label>
+                        <input type="text" id="post-tags" name="tags"> 
+                    </div>
+                    <button type="submit" class="btn">Publish Post</button> 
+                    <button type="button" class="btn secondary" onclick="toggleForm('create-form')" style="margin-left: 10px;">Cancel</button>
+                    
+                </form>
+            </div>
+            
+            <h3>Your Published Posts</h3>
+
+            <ul class="dashboard-list" id="user-posts-list">
+                <p id="empty-message" style="color: #7f8c8d; text-align: center; padding: 30px; border: 1px dashed #ccc; border-radius: 5px;">
+                    You haven't published any posts yet. Click "Create New Post" to get started!
+                </p>
+            </ul>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+
+    <script>
+        // Local script block remains clean, relying entirely on script.js
+    </script>
+</body>
+</html>
