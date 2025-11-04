@@ -20,14 +20,26 @@
 
     <main class="container">
         
-        <section id="home-view" class="view" style="display:block;"> 
-            <h1>Latest Articles from All Writers</h1>
-            <p>Discover new perspectives and connect with authors worldwide.</p>
-            
-            <div class="blog-grid">
-                <p style="text-align: center; color: #7f8c8d; padding: 40px;">
-                    Loading latest articles...
-                </p>
+        <section id="home-view" class="view" style="display:block;">
+            <!-- Hero: Medium-style intro -->
+            <div class="hero">
+                <div class="hero-inner container">
+                    <h1 class="hero-title">Read the best ideas, from people everywhere.</h1>
+                    <p class="hero-sub">A friendly place to publish, read, and connect. Share your thinking, discover new voices, and build your audience.</p>
+                    <div class="hero-cta">
+                        <a href="#register" class="btn">Get started — it's free</a>
+                        <a href="#" class="btn secondary" onclick="showView('home'); return false;">Explore posts</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container">
+                <h2 class="section-heading">Latest Articles from Our Community</h2>
+                <div class="blog-grid">
+                    <p style="text-align: center; color: #7f8c8d; padding: 40px;">
+                        Loading latest articles...
+                    </p>
+                </div>
             </div>
         </section>
 
