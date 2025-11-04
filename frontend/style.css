@@ -160,10 +160,14 @@ header {
     text-align: left;
 }
 .hero-title {
-    font-size: 2.6rem;
-    line-height: 1.05;
-    margin-bottom: 12px;
+    font-family: 'Playfair Display', var(--font-family);
+    font-size: 3.8rem;
+    line-height: 1.02;
+    margin-bottom: 14px;
     font-weight: 700;
+    letter-spacing: -0.6px;
+    color: white;
+    text-shadow: 0 8px 24px rgba(0,0,0,0.15);
     transition: transform 0.45s cubic-bezier(.2,.9,.2,1), color 0.35s ease, opacity 0.35s ease;
     will-change: transform, color, opacity;
 }
