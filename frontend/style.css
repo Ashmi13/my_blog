@@ -198,6 +198,33 @@ header {
     margin: 28px 0 10px;
 }
 
+/* Home page heading (bigger, decorative, with transition) */
+.home-heading {
+    font-family: 'Playfair Display', var(--font-family);
+    font-size: 2.2rem;
+    line-height: 1.05;
+    color: var(--secondary-color);
+    margin: 28px 0 6px;
+    transition: transform 0.35s ease, color 0.35s ease;
+    cursor: default;
+}
+.home-heading:hover {
+    transform: translateY(-6px);
+    color: var(--primary-color);
+}
+
+.home-subtitle {
+    font-size: 1.1rem;
+    color: #55606a;
+    margin-bottom: 18px;
+    max-width: 900px;
+    transition: opacity 0.35s ease, transform 0.35s ease;
+}
+.home-subtitle:hover {
+    transform: translateY(-3px);
+    opacity: 0.95;
+}
+
 /* --- Blog Post Grid (Home Page) --- */
 .blog-grid {
     display: grid;
