@@ -1,11 +1,16 @@
 /* --- Global Styles & Variables --- */
 :root {
-    --primary-color: #3498db; /* Professional Blue */
-    --secondary-color: #2c3e50; /* Dark contrast */
-    --accent-color: #e74c3c; /* Action/Delete Red */
-    --light-bg: #ecf0f1;
-    --dark-bg: #bdc3c7;
-    --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --primary-color: #2563eb; /* Modern Blue */
+    --secondary-color: #1e293b; /* Deep Navy */
+    --accent-color: #ef4444; /* Vibrant Red */
+    --success-color: #22c55e; /* Fresh Green */
+    --warning-color: #f59e0b; /* Warm Orange */
+    --light-bg: #f8fafc;
+    --dark-bg: #e2e8f0;
+    --font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
 }
 
 * {
@@ -19,11 +24,24 @@ body {
     color: var(--secondary-color);
     line-height: 1.6;
     min-height: 100vh;
-    
-    /* Background Transitions */
-    background: linear-gradient(135deg, var(--light-bg), var(--dark-bg));
-    background-size: 400% 400%;
-    animation: backgroundGradient 15s ease infinite;
+    background: var(--light-bg);
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, 
+        var(--primary-color), 
+        var(--success-color), 
+        var(--warning-color), 
+        var(--accent-color)
+    );
+    z-index: 1000;
 }
 
 @keyframes backgroundGradient {
@@ -43,17 +61,21 @@ body {
 /* --- Navigation & Buttons --- */
 header {
     background: white;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow-sm);
     padding: 15px 0;
     position: sticky;
     top: 0;
     z-index: 1000;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .nav-bar {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
 .logo {
@@ -61,29 +83,61 @@ header {
     text-decoration: none;
     font-size: 1.8em;
     font-weight: bold;
+    background: linear-gradient(90deg, var(--primary-color), var(--success-color));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: opacity 0.3s ease;
+}
+
+.logo:hover {
+    opacity: 0.85;
 }
 
 .nav-links a, .btn {
     text-decoration: none;
     color: white;
     background-color: var(--primary-color);
-    padding: 10px 20px;
-    border-radius: 5px;
-    margin-left: 10px;
-    transition: background-color 0.3s ease;
+    padding: 12px 24px;
+    border-radius: 8px;
+    margin-left: 12px;
+    transition: all 0.3s ease;
     border: none;
     cursor: pointer;
+    font-weight: 600;
+    font-size: 0.95em;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: var(--shadow-sm);
 }
 
 .nav-links a:hover, .btn:hover {
-    background-color: #2980b9;
+    background-color: #1d4ed8;
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
 }
 
 .btn.secondary {
-    background-color: var(--secondary-color);
+    background-color: white;
+    color: var(--secondary-color);
+    border: 2px solid var(--dark-bg);
 }
+
 .btn.secondary:hover {
-    background-color: #34495e;
+    background-color: var(--light-bg);
+    border-color: var(--secondary-color);
+}
+
+.btn.delete-btn {
+    background-color: white;
+    color: var(--accent-color);
+    border: 2px solid var(--accent-color);
+}
+
+.btn.delete-btn:hover {
+    background-color: var(--accent-color);
+    color: white;
 }
 
 /* --- Blog Post Grid (Home Page) --- */
@@ -98,16 +152,34 @@ header {
 
 .blog-card {
     background: white;
-    border-radius: 8px;
-    /* Slightly stronger shadow for depth */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08); 
+    border-radius: 12px;
+    box-shadow: var(--shadow-md);
     overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    position: relative;
+}
+
+.blog-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: var(--primary-color);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+    transform-origin: left;
 }
 
 .blog-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow-lg);
+}
+
+.blog-card:hover::before {
+    transform: scaleX(1);
 }
 
 .blog-content {
@@ -139,17 +211,37 @@ header {
 .auth-form {
     background: white;
     padding: 40px;
-    border-radius: 8px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    border-radius: 16px;
+    box-shadow: var(--shadow-lg);
     width: 100%;
-    /* ➡️ ADJUSTMENT HERE: Increased max-width for better spacing */
-    max-width: 550px; 
+    max-width: 550px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    position: relative;
+    overflow: hidden;
+}
+
+.auth-form::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, 
+        var(--primary-color), 
+        var(--success-color)
+    );
 }
 
 .auth-form h2 {
     text-align: center;
     color: var(--secondary-color);
     margin-bottom: 30px;
+    font-size: 2em;
+    background: linear-gradient(90deg, var(--primary-color), var(--success-color));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 /* --- Forms & Login/Register Styles --- */
@@ -167,22 +259,46 @@ header {
     font-weight: bold;
 }
 
-.form-group input {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 1em;
-}
-
-/* New style for the content textarea */
+.form-group input,
 .form-group textarea {
     width: 100%;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    padding: 14px;
+    border: 2px solid var(--dark-bg);
+    border-radius: 8px;
     font-size: 1em;
-    resize: vertical; /* Allows user to resize vertically */
+    transition: all 0.3s ease;
+    background-color: var(--light-bg);
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    background-color: white;
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.form-group label {
+    font-weight: 600;
+    color: var(--secondary-color);
+    margin-bottom: 8px;
+    display: block;
+}
+
+/* Add animation for form validation */
+.form-group input:valid,
+.form-group textarea:valid {
+    border-color: var(--success-color);
+}
+
+.form-group input:invalid:not(:placeholder-shown),
+.form-group textarea:invalid:not(:placeholder-shown) {
+    border-color: var(--accent-color);
 }
 
 .auth-form button {
