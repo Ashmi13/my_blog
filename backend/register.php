@@ -15,8 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 }
 
 // Get the data sent from the registration form
-// FIX 1: Changed 'name' input to 'username' input to match the database column
-$username = trim($_POST['name'] ?? ''); 
+$username = trim($_POST['username'] ?? ''); 
 $email = trim($_POST['email'] ?? '');
 $password = $_POST['password'] ?? '';
 $confirm = $_POST['confirm'] ?? '';
